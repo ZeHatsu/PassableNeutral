@@ -27,13 +27,13 @@ roles:
 
 displays:
   sRGB:
-    - !<View> {name: PBR Neutral, colorspace: PBR Neutral sRGB}
+    - !<View> {name: Passable Neutral, colorspace: Passable Neutral sRGB}
   Gamma 2.2 Rec.709:
-    - !<View> {name: PBR Neutral, colorspace: PBR Neutral Gamma 2.2}
+    - !<View> {name: Passable Neutral, colorspace: Passable Neutral Gamma 2.2}
 
 active_displays: [sRGB, Gamma 2.2 Rec.709]
-active_views: [PBR Neutral]
-inactive_colorspaces: [PBR Neutral sRGB, PBR Neutral Gamma 2.2]
+active_views: [Passable Neutral]
+inactive_colorspaces: [Passable Neutral sRGB, Passable Neutral Gamma 2.2]
 
 colorspaces:
   - !<ColorSpace>
@@ -70,29 +70,29 @@ colorspaces:
         - !<ExponentTransform> {value: 2.2, direction: inverse}
 
   - !<ColorSpace>
-    name: PBR Neutral sRGB
-    family: PBR Neutral
+    name: Passable Neutral sRGB
+    family: Passable Neutral
     equalitygroup:
     bitdepth: 32f
     description: |
-      Khronos PBR Neutral Image Encoding for sRGB Display
+      Khronos Passable Neutral Image Encoding for sRGB Display
     isdata: false
     from_scene_reference: !<GroupTransform>
       children:
         - !<AllocationTransform> {allocation: lg2, vars: [-9, 10]}
-        - !<FileTransform> {src: pbrNeutral.cube, interpolation: tetrahedral}
+        - !<FileTransform> {src: passableNeutral.cube, interpolation: tetrahedral}
         - !<ColorSpaceTransform> {src: Linear Rec.709, dst: sRGB}
 
   - !<ColorSpace>
-    name: PBR Neutral Gamma 2.2
-    family: PBR Neutral
+    name: Passable Neutral Gamma 2.2
+    family: Passable Neutral
     equalitygroup:
     bitdepth: 32f
     description: |
-      Khronos PBR Neutral Image Encoding for Gamma 2.2 sRGB Display variant
+      Khronos Passable Neutral Image Encoding for Gamma 2.2 sRGB Display variant
     isdata: false
     from_scene_reference: !<GroupTransform>
       children:
         - !<AllocationTransform> {allocation: lg2, vars: [-9, 10]}
-        - !<FileTransform> {src: pbrNeutral.cube, interpolation: tetrahedral}
+        - !<FileTransform> {src: passableNeutral.cube, interpolation: tetrahedral}
         - !<ColorSpaceTransform> {src: Linear Rec.709, dst: Gamma 2.2 Rec.709}

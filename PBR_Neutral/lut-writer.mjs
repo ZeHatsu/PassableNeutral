@@ -25,8 +25,8 @@ const log2Min = -9;
 const log2Max = 10;
 
 const text = [
-  `TITLE "PBR Neutral sRGB"`,
-  `# PBR Neutral sRGB LUT`,
+  `TITLE "Passable Neutral sRGB"`,
+  `# Passable Neutral sRGB LUT`,
   `DOMAIN_MIN 0 0 0`,
   `DOMAIN_MAX 1 1 1`,
   `LUT_3D_SIZE ${size}`,
@@ -84,9 +84,9 @@ function oklab_to_linear_srgb(Lab)
     return {X, Y, Z};
 }
 
-function pbrNeutral(rgb) {
+function passableNeutral(rgb) {
   const startCompression = 0.8 - 0.04;
-  const desaturation = 0.15;
+  const desaturation = 0.3;
 
   let {R, G, B} = rgb;
 
@@ -142,7 +142,7 @@ function pbrNeutral(rgb) {
 
 function inverseNeutral(rgb) {
   const startCompression = 0.8 - 0.04;
-  const desaturation = 0.15;
+  const desaturation = 0.25;
 
   let {R, G, B} = rgb;
 
@@ -191,7 +191,7 @@ for (let b = 0; b < size; ++b) {
       // invert the lg2 transform in the OCIO config - used to more evenly-space
       // the LUT points
       const rgbIn = {R: inverseLog(r), G: inverseLog(g), B: inverseLog(b)};
-      const rgbOut = pbrNeutral(rgbIn);
+      const rgbOut = passableNeutral(rgbIn);
       text.push(rgb2string(rgbOut));
       // verify inverse
       const rgbIn2 = inverseNeutral(rgbOut);
