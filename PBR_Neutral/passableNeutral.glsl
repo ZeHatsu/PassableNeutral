@@ -1,7 +1,7 @@
 // Input color is non-negative and resides in the Linear Rec. 709 color space.
 // Output color is also Linear Rec. 709, but in the [0, 1] range.
 
-vec3 PassableNeutralToneMapping( vec3 color ) {
+vec3 PassableNeutralDTF( vec3 color ) {
   const float startCompression = 0.8 - 0.04;
   const float desaturation = 0.3;
   const mat3 rgb2ok = mat3(0.4121656120, 0.2118591070, 0.0883097947,
